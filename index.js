@@ -61,14 +61,14 @@ io.on('connection', (socket) => {
     })
   })
   socket.on('join', ({name, roomId, userId}) => {
-    const {error, user} = addUser({
+    const {user} = addUser({
       socketId: socket.id, 
       name, 
       roomId,
       userId
     })
     socket.join(roomId)
-    if(error){
+    if(!user){
       console.error('error joining')
     } else {
       console.info(user.name + 'joined')
